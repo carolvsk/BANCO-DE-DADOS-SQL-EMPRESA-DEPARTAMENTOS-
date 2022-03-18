@@ -1,0 +1,52 @@
+CREATE database EMPRESA_DEPS;
+CREATE table Funcionarios(
+id_func int (4) auto_increment,
+nome varchar (50) not null,
+cpf bigint (11),
+sal decimal,
+rua varchar(50),
+numero int,
+telefone int,
+primary key (id_func)
+);
+CREATE table dependentes (
+ID_DEPEN INT(4) auto_increment,
+nome varchar (50) not null,
+idade int,
+parentesco varchar (20),
+primary key (id_depen)
+);
+CREATE table departamentos(
+ID_DEP int (4) auto_increment,
+primary key (ID_DEP)
+);
+CREATE table projetos(
+ID_PROJ int (4) auto_increment,
+nome_proj varchar(50) not null,
+descricao varchar(1000) not null,
+primary key (id_proj)
+);
+CREATE table supervisores (
+id_supervisores int (4) auto_increment,
+primary key (id_supervisores)
+);
+ alter table dependentes add id_func int (4);
+ alter table dependentes add constraint fk_id_func foreign key (id_func) references funcionarios (id_func);
+
+alter table departamentos add id_func int (4);
+alter table departamentos add constraint fk_id_func foreign key (id_func) references funcionarios (id_func);
+
+alter table projetos add id_func int (4);
+alter table projetos add constraint fk_id_func foreign key (id_func) references funcionarios (id_func);
+
+alter table supervisores add id_func int (4);
+alter table supervisores add constraint fk_id_func foreign key (id_func) references funcionarios (id_func);
+
+alter table projetos add id_dep int (4);
+alter table projetos add constraint fk_id_dep foreign key (id_dep) references funcionarios (id_dep);
+
+alter table departamento add nome_dep varchar (50);
+
+insert into departamentos(id_dep) values (null);
+
+select * from  departamentos
